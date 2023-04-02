@@ -24,10 +24,7 @@ class BaseLegacyDataTypeMacro(BaseDbtUtilsBackCompat):
     def assert_columns_equal(self, project, expected_cols, actual_cols):
         # we need to be a little more lenient when mapping between 'legacy' and 'new' types that are equivalent
         # e.g. 'character varying' and 'text'
-        if expected_cols == actual_cols:
-            # cool, no need for jank
-            pass
-        else:
+        if expected_cols != actual_cols:
             # this is pretty janky
             # our goal here: reasonable confidence that the switch from the legacy version of the dbt_utils.type_{X} macro,
             # and the new version, will not constitute a breaking change for end users
